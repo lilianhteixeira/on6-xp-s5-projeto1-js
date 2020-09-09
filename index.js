@@ -227,19 +227,19 @@ const pessoa2 = {
   andando: false,
   caminhouQuantosMetros: 0,
 
-  fazerAniversario: () => this.idade++ ,
-  andar: (metrosCaminhados) => {
+  fazerAniversario() { this.idade++ },
+  andar(metrosCaminhados) {
     this.andando = true
     this.caminhouQuantosMetros += metrosCaminhados
   },
 
-  parar: () => this.andando = false,
+  parar() { this.andando = false},
 
-  apresentacao: () => {  
+  apresentacao() {  
     const anos = (this.idade === 1) ? 'ano' : 'anos';
     const metros = (this.caminhouQuantosMetros <= 1) ? 'metro' : 'metros';
   
-    return `Olá, eu sou ${pessoa2.nome} ${pessoa2.sobrenome}, tenho ${this.idade} ${anos}, 
+    return `Olá, eu sou ${this.nome} ${this.sobrenome}, tenho ${this.idade} ${anos}, 
     ${this.altura}, meu peso é ${this.peso} e, só hoje, eu já caminhei 
     ${this.caminhouQuantosMetros} ${metros}!`
   }
@@ -248,21 +248,70 @@ const pessoa2 = {
 pessoa2.andar(100);
 console.log(pessoa2.apresentacao());
 
+const pessoa3 = {
+  nome: 'Lílian',
+  sobrenome: 'Teixeira',
+  idade: 25,
+  altura: 1.6,
+  peso: 55,
+  andando: false,
+  caminhouQuantosMetros: 0,
 
-console.log('-----------------------------------------------------')
+  fazerAniversario() { this.idade++ },
+  andar(metrosCaminhados) {
+    this.andando = true
+    this.caminhouQuantosMetros += metrosCaminhados
+  },
+
+  parar() { this.andando = false},
+
+  apresentacao() {  
+    const anos = (this.idade === 1) ? 'ano' : 'anos';
+    const metros = (this.caminhouQuantosMetros <= 1) ? 'metro' : 'metros';
+  
+    return `Olá, eu sou ${this.nome} ${this.sobrenome}, tenho ${this.idade} ${anos}, 
+    ${this.altura}, meu peso é ${this.peso} e, só hoje, eu já caminhei 
+    ${this.caminhouQuantosMetros} ${metros}!`
+  }
+}
+
+  pessoa3.andar(100);
+  console.log(pessoa3.apresentacao());
+
+  console.log('-----------------------------------------------------')
 // ----------------------------------------------
 // CLASSES
 console.log('Classes 🆕')
 
 // Vamos criar a classe Pessoa
 
+  class Pessoa {
+    constructor(name, surname, age, walking = false, distance = 0){
+      this.nome = name;
+      this.sobrenome = surname;
+      this.idade = age;
+      this.andando = walking;
+      this.caminhouQuantosMetros = distance;
+    }
+    fazerAniversario(){
+      this.idade ++;
+    }
+  }
 
+  const pessoa4 = new Pessoa('Lílian', 'Teixeira', 25);
+  console.log(pessoa4);
+  console.log(pessoa4.nome);
+  const {sobrenome} = pessoa4;
+  console.log(sobrenome);
 
+  pessoa4.fazerAniversario();
+  console.log(pessoa4);
 
+  const pessoa5 = new Pessoa('Edlaine', 'Pontes', 36, true, 500);
+  console.log(pessoa5);
 
+  console.log('-----------------------------------------------------')
 
-
-console.log('-----------------------------------------------------')
 // ----------------------------------------------
 // ARRAYS
 console.log('Arrays [ 0️⃣  , 1️⃣  , 2️⃣  ]')
@@ -274,36 +323,29 @@ const numbers = [9, 2, 5]
 
 // Acessando elementos pela posição do array
 
-
-
-
-
-
+  console.log(lista[2]);
+  console.log(numbers[2]);
 
 // Informe o tamanho de cada array
 
-
-
-
-
-
+  console.log(lista.length);
+  console.log(numbers.length);
 
 // Faça a desestruturação do array
 
-
-
-
-
-
+  const [primeiro, segundo, terceiro] = lista;
+  console.log(primeiro);
+  console.log(segundo);
+  console.log(terceiro);
 
 // Possuo 4 tias. Os dados delas estão armazenados no array de objetos dentro do arquivo db.js
 // Vamos importar esses dados para podermos usá-los durante nosso exercício de revisão.
-const db = require('./db')
+  const db = require('./db')
 
+  console.log(db);
 
-
-
-
+  const {tias} = db;
+  console.log(tias);
 
 console.log('-----------------------------------------------------')
 // ----------------------------------------------
@@ -312,22 +354,22 @@ console.log('Métodos iteração ')
 
 // Mostre a tabela das tias pelo console.table()
 
-
-
-
-
-
+  console.table(tias);
+  //console.log();
 
 console.log('-----------------------------------------------------')
 console.log('filter()')
 // filter
 // Filtre as tias que moram em SP e mostre no console.
 
+  /**function filtrarTias (item){
+    return item.local === 'SP';
+  }
 
+  const tiasSP = tias.filter(filtrarTias);
+  console.log(tiasSP);*/
 
-
-
-
+  const tiasSP = tias.filter(item => item.local === 'SP');
 
 console.log('-----------------------------------------------------')
 console.log('map()')
